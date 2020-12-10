@@ -3,5 +3,10 @@
     "parser": "babel-eslint",
     "globals": {
         "document": false
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "jasmine": true
     }
 }
