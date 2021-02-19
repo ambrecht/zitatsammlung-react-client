@@ -1,20 +1,18 @@
 import React from 'react'
-import LogoHeader from './header'
-import SearchBar from './SearchBar'
+import LogoHeader from './logoHeader'
+import SearchBar from './searchBar'
+import Zitatform from './zitatForm'
+import Autocomplete from './autoComplete'
 
-class App extends React.Component {
-    onSearchSubmit(term) {
-        console.log(term)
-    }
-
-    render() {
-        return (
-            <div className="ui container">
-                <LogoHeader />
-                <SearchBar onSubmit={this.onSearchSubmit} />
-            </div>
-        )
-    }
+const App = () => {
+    return (
+        <div className="ui container">
+            <LogoHeader />
+            <Autocomplete />
+            <SearchBar />
+            <Zitatform />
+        </div>
+    )
 }
 
 export default App

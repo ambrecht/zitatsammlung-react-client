@@ -1,0 +1,33 @@
+const intialState = {
+    activeOption: 0,
+    filteredOptions: [],
+    showOptions: false,
+    userInput: '',
+}
+
+export function autoReducer(state = initalState, action) {
+    switch (action.type) {
+        case ZITAT_INPUT:
+            return { ...state, zitat: action.payload }
+        case RESPONSE_BOOK_API:
+            console.log(action.payload)
+            return { ...state, book: action.payload }
+
+        default:
+            return state
+    }
+}
+
+
+this.setState({
+    activeOption: 0,
+    filteredOptions,
+    showOptions: true,
+    userInput: e.currentTarget.value,
+})
+
+this.setState({
+            activeOption: 0,
+            filteredOptions: [],
+            showOptions: false,
+            userInput: e.currentTarget.innerText,
