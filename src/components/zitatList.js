@@ -7,7 +7,7 @@ import {
     getZitateList,
     getSeverZitate,
     changeZitat,
-} from '../reducers/zitatReducer'
+} from '../store/zitatReducer'
 
 export default function Zitatlist() {
     //const serverZitate = useSelector(getSeverZitate)

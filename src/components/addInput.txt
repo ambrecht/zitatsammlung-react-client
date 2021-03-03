@@ -1,0 +1,4 @@
+;<button onClick={() => dispatch(addInputField(1))}>KLICK MICH HART!</button>
+
+ const zitatInput = (
+        <textarea name="quote" ref={register} defaultValue={body} />

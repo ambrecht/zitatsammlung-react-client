@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { formReducer } from './formReducer'
 import { zitatReducer } from './zitatReducer'
+import { selectReducer } from './selectReducer'
 import thunk from 'redux-thunk'
 
 const composeEnhancers =
@@ -11,8 +12,9 @@ const enhancer = composeEnhancers(
 )
 export const store = createStore(
     combineReducers({
-        form: formReducer,
-        zitat: zitatReducer,
+        formInput: formReducer,
+        zitatOutput: zitatReducer,
+        selectOptions: selectReducer,
     }),
     enhancer
 )

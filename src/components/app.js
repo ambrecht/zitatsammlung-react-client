@@ -1,16 +1,14 @@
 import React from 'react'
 import LogoHeader from './logoHeader'
-import SearchBar from './searchBar'
 import Zitatform from './zitatForm'
-import Autocomplete from './autoComplete'
+import SelectForm from './selectForm'
 
 const App = () => {
     return (
         <div className="ui container">
             <LogoHeader />
-            <Autocomplete />
-            <SearchBar />
             <Zitatform />
+            <SelectForm />
         </div>
     )
 }
