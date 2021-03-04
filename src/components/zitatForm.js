@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import SelectForm from './selectForm'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { getInitalState, inputZitat } from '../store/formReducer'
@@ -125,6 +126,8 @@ export default function zitatForm() {
                 ))}
             </ul>
             <section>
+                <SelectForm />
+
                 <button
                     type="button"
                     onClick={() => {
