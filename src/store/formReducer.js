@@ -13,12 +13,15 @@ const initalState = {
 }
 
 // REDUCER
+// The formreducer mainly takes care of writing the data of the form into the database.
 
 export function formReducer(state = initalState, action) {
     switch (action.type) {
         case ZITAT_INPUT:
-            console.log(action.payload)
-            return { ...state, zitate: action.payload }
+            return {
+                ...state,
+                zitate: action.payload,
+            }
         case RESPONSE_BOOK_API:
             return { ...state, book: action.payload }
         case GET_SELECT_OPTIONS:

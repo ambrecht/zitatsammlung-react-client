@@ -15,11 +15,9 @@ export default function selectForm() {
     const [value, setValue] = useState()
 
     const onChange = (option) => {
-        console.log(option)
         setValue(option)
     }
 
-    console.log({ ...{ value, onChange, options } })
     if (value) {
         return <div>AUTOR:{value.value}, </div>
     }

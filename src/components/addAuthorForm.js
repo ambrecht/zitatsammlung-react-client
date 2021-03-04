@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import SelectForm from './selectForm'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
-import { getInitalState, inputZitat } from '../store/formReducer'
+import { getInitalState } from '../store/formReducer'
 import { setSelectOptions } from '../store/selectReducer'
 
 export default function zitatForm() {
@@ -17,40 +16,11 @@ export default function zitatForm() {
         verlag,
         jahr,
     } = initalSate.formInput
-    const [zitatFields, setZitatFields] = useState([])
-    const { register, handleSubmit, setValue } = useForm()
 
-    const add = () => {
-        setZitatFields([...zitatFields, {}])
-    }
-
-    const remove = (index) => {
-        setZitatFields([
-            ...zitatFields.slice(0, index),
-            ...zitatFields.slice(index + 1),
-        ])
-    }
-
-    /*    const onInputChange = () => {
-        const autor = watch('author')
-        const buchtitel = watch('buchtitel')
-
-        console.log(autor, buchtitel)
-
-        buchtitel
-            ? dispatch(findBook(autor, buchtitel))
-            : console.log('Ick brauche nen Titel!')
-    }
-
- */
-
-    useEffect(() => {
-        setValue('zitate', [])
-    }, [])
+    const { register, handleSubmit } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
-        dispatch(inputZitat(data))
         dispatch(setSelectOptions(data.author))
     }
 
@@ -110,37 +80,7 @@ export default function zitatForm() {
                 ref={register}
             />
 
-            <ul name="zita">
-                {zitatFields.map((item, index) => (
-                    <li key={index.toString()}>
-                        <textarea
-                            name={`zitate.${index}.text`}
-                            defaultValue="zitat"
-                            ref={register}
-                        />
-                        <input
-                            name={`zitate.${index}.seite`}
-                            ref={register}
-                            defaultValue="Seitenzahl"
-                        />
-
-                        <button onClick={() => remove(index)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
-            <section>
-                <SelectForm />
-
-                <button
-                    type="button"
-                    onClick={() => {
-                        add()
-                    }}
-                >
-                    Add
-                </button>
-            </section>
-            <button type="submit">Speichern</button>
+            <button type="submit">Autor und Buch speichern...</button>
         </form>
     )
 }
