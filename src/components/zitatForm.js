@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import SelectForm from './selectForm'
+import React, { useState } from 'react'
+
 import { useForm } from 'react-hook-form'
-import { useSelector, useDispatch } from 'react-redux'
-import { getInitalState, inputZitat } from '../store/formReducer'
-import { setSelectOptions } from '../store/selectReducer'
+import { useDispatch } from 'react-redux'
+import { inputZitat } from '../store/formReducer'
 
 export default function zitatForm() {
     const dispatch = useDispatch()
 
-    const initalSate = useSelector(getInitalState)
-    const {
-        vorname,
-        nachname,
-        hashtag,
-        titel,
-        verlag,
-        jahr,
-    } = initalSate.formInput
     const [zitatFields, setZitatFields] = useState([])
-    const { register, handleSubmit, setValue } = useForm()
+    const { register, handleSubmit } = useForm()
 
     const add = () => {
         setZitatFields([...zitatFields, {}])
@@ -31,85 +21,13 @@ export default function zitatForm() {
         ])
     }
 
-    /*    const onInputChange = () => {
-        const autor = watch('author')
-        const buchtitel = watch('buchtitel')
-
-        console.log(autor, buchtitel)
-
-        buchtitel
-            ? dispatch(findBook(autor, buchtitel))
-            : console.log('Ick brauche nen Titel!')
-    }
-
- */
-
-    useEffect(() => {
-        setValue('zitate', [])
-    }, [])
-
     const onSubmit = (data) => {
         console.log(data)
         dispatch(inputZitat(data))
-        dispatch(setSelectOptions(data.author))
     }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-                type="text"
-                defaultValue={vorname}
-                name="author.vorname"
-                ref={register}
-            />
-
-            <input
-                type="text"
-                defaultValue={nachname}
-                name="author.nachname"
-                ref={register}
-            />
-
-            <input
-                type="date"
-                defaultValue="Geburt"
-                name="author.geburt"
-                ref={register}
-            />
-
-            <input
-                type="date"
-                defaultValue="Tot"
-                name="author.tot"
-                ref={register}
-            />
-            <input
-                type="text"
-                defaultValue={titel}
-                name="buchtitel"
-                ref={register}
-            />
-
-            <input
-                type="text"
-                defaultValue={verlag}
-                name="publisher"
-                ref={register}
-            />
-            <input
-                type="text"
-                defaultValue="20009"
-                placeholder={jahr}
-                name="year"
-                ref={register}
-            />
-            <input
-                type="text"
-                defaultValue={hashtag}
-                name="hashtag[0]"
-                ref={register}
-            />
-
             <ul name="zita">
                 {zitatFields.map((item, index) => (
                     <li key={index.toString()}>
@@ -129,8 +47,6 @@ export default function zitatForm() {
                 ))}
             </ul>
             <section>
-                <SelectForm />
-
                 <button
                     type="button"
                     onClick={() => {

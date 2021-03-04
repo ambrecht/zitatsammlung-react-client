@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getInitalState } from '../store/formReducer'
 import { setSelectOptions } from '../store/selectReducer'
 
-export default function zitatForm() {
+export default function addAuthorForm() {
     const dispatch = useDispatch()
 
     const initalSate = useSelector(getInitalState)
