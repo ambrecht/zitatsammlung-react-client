@@ -1,0 +1,52 @@
+import axios from 'axios'
+
+// action types
+const GET_SELECT_OPTIONS = 'select/getoptions'
+const SET_SELECT_OPTIONS = 'select/setoptions'
+
+// REDUCER
+export function selectReducer(state = {}, action) {
+    switch (action.type) {
+        case GET_SELECT_OPTIONS:
+            console.log(action.payload)
+            return {
+                ...state,
+                autorOpts: [...action.payload],
+            }
+        case SET_SELECT_OPTIONS:
+            console.log(action.payload)
+            return {
+                ...state,
+                autorOpts: [...action.payload],
+            }
+        default:
+            return state
+    }
+}
+
+//selectors
+export const getOptions = (state) => state.selectOptions
+
+// action creators
+
+export const getSelectOptions = () => {
+    return async function (dispatch) {
+        const response = await axios.get('/select')
+        const options = []
+
+        response.data.map((autor) =>
+            options.push({
+                value: autor.vorname + ' ' + autor.nachname,
+                label: autor.vorname + ' ' + autor.nachname,
+            })
+        )
+
+        dispatch({ type: GET_SELECT_OPTIONS, payload: options })
+    }
+}
+
+export const setSelectOptions = (autor) => {
+    return async function (dispatch) {
+        dispatch({ type: GET_SELECT_OPTIONS, payload: autor })
+    }
+}

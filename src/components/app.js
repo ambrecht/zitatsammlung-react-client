@@ -1,20 +1,31 @@
-import React from 'react'
-import LogoHeader from './header'
-import SearchBar from './SearchBar'
+import React, { useState } from 'react'
+import LogoHeader from './logoHeader'
+import Zitatform from './zitatForm'
+import SelectForm from './selectForm'
+import AddAuthorForm from './addAuthorForm'
 
-class App extends React.Component {
-    onSearchSubmit(term) {
-        console.log(term)
-    }
+const App = () => {
+    const [display, setdisplay] = useState(false)
 
-    render() {
-        return (
-            <div className="ui container">
-                <LogoHeader />
-                <SearchBar onSubmit={this.onSearchSubmit} />
-            </div>
-        )
+    if (display) {
+        return <AddAuthorForm />
     }
+    return (
+        <div className="ui container">
+            <LogoHeader />
+            <button
+                type="button"
+                onClick={() => {
+                    setdisplay(!display)
+                }}
+            >
+                Autor und Buch hinzufügen
+            </button>
+
+            <SelectForm />
+            <Zitatform />
+        </div>
+    )
 }
 
 export default App
